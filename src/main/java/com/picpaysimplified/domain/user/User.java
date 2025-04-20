@@ -1,10 +1,8 @@
 package com.picpaysimplified.domain.user;
 
+import com.picpaysimplified.dtos.UserDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -13,6 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User {
 
@@ -36,4 +35,15 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    //  Constructor
+    public User(UserDto dto) {
+        this.firstName = dto.firstName();
+        this.lastName = dto.lastName();
+        this.email = dto.email();
+        this.document = dto.document();
+        this.password = dto.password();
+        this.userType = dto.userType();
+        this.balance = dto.balance();
+    }
 }
